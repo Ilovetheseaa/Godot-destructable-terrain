@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvl6nuwkp5e47"]
+
+[ext_resource type="PackedScene" uid="uid://1kxl0sri2fya" path="res://Scenes/ground.tscn" id="1_ed1gk"]
+[ext_resource type="PackedScene" uid="uid://blci2jw6seihe" path="res://Scenes/player.tscn" id="2_tb6pq"]
+[ext_resource type="PackedScene" uid="uid://cxlc4upqdlc4p" path="res://Scenes/planet.tscn" id="3_brwff"]
+
+[node name="Space" type="Node2D"]
+
+[node name="Ground" parent="." instance=ExtResource("1_ed1gk")]
+position = Vector2(5809, 3876)
+dot_count = 8
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_tb6pq")]
+position = Vector2(4140, 3715)
+
+[node name="Planet" parent="." instance=ExtResource("3_brwff")]
+position = Vector2(3670, 3821)

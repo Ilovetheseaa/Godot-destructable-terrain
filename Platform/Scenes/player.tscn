@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://blci2jw6seihe"]
+
+[ext_resource type="Script" path="res://Scripts/playerC.cs" id="1_qdh2f"]
+[ext_resource type="Texture2D" uid="uid://duqu7uc81qd23" path="res://Sprites/Cross.png" id="2_yx4tc"]
+[ext_resource type="PackedScene" uid="uid://jub7o3bgwn34" path="res://Scenes/ColPol.tscn" id="3_diu5b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el03x"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpjoa"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_qdh2f")
+tool_use_distance = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_el03x")
+debug_color = Color(0.952941, 0, 0.54902, 0.419608)
+
+[node name="Tools" type="Node2D" parent="."]
+
+[node name="UseCooldown" type="Timer" parent="Tools"]
+wait_time = 0.001
+one_shot = true
+
+[node name="Raycast" type="RayCast2D" parent="Tools"]
+target_position = Vector2(20, 0)
+
+[node name="RaycastTarget" type="Node2D" parent="Tools"]
+
+[node name="Hand" type="Node2D" parent="Tools"]
+position = Vector2(20, 0)
+
+[node name="DigColArea" type="Area2D" parent="Tools/Hand"]
+
+[node name="CollisionPolygon2D" parent="Tools/Hand/DigColArea" instance=ExtResource("3_diu5b")]
+
+[node name="DigDetArea" type="Area2D" parent="Tools/Hand"]
+
+[node name="Collision" type="CollisionShape2D" parent="Tools/Hand/DigDetArea"]
+shape = SubResource("CircleShape2D_vpjoa")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_yx4tc")
+
+[connection signal="body_entered" from="Tools/Hand/DigDetArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Tools/Hand/DigDetArea" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxlc4upqdlc4p"]
+
+[ext_resource type="Script" path="res://Scripts/PlanetC.cs" id="1_02yyv"]
+
+[node name="Planet" type="Node2D" groups=["Planet"]]
+script = ExtResource("1_02yyv")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="MainSurface" type="StaticBody2D" parent="."]
+
+[node name="CoreSurface" type="StaticBody2D" parent="." groups=["Entity"]]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
