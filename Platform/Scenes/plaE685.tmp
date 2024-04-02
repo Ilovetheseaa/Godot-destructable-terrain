@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://blci2jw6seihe"]
+
+[ext_resource type="Texture2D" uid="uid://cqamvik8e06ds" path="res://Sprites/Dot.png" id="1_kdpgl"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_tgmqh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpjoa"]
+radius = 9.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_tgmqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vpjoa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+texture = ExtResource("1_kdpgl")

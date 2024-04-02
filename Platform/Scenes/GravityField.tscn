@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b04avuejy3214"]
+
+[ext_resource type="Script" path="res://Scripts/GravityContol.cs" id="1_rqok1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s514i"]
+
+[node name="GravityField" type="Node2D"]
+script = ExtResource("1_rqok1")
+
+[node name="GravityField" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="GravityCol" type="CollisionShape2D" parent="GravityField"]
+shape = SubResource("CircleShape2D_s514i")
+
+[connection signal="body_entered" from="GravityField" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="GravityField" to="." method="_on_area_2d_body_exited"]

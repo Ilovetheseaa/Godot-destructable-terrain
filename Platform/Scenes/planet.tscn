@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxlc4upqdlc4p"]
+
+[ext_resource type="Script" path="res://Scripts/PlanetC.cs" id="1_02yyv"]
+[ext_resource type="PackedScene" uid="uid://b04avuejy3214" path="res://Scenes/GravityField.tscn" id="2_tni5k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ymqds"]
+radius = 20.0
+
+[node name="Planet" type="Node2D" groups=["Planet"]]
+script = ExtResource("1_02yyv")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="MainSurface" type="StaticBody2D" parent="."]
+collision_mask = 6
+
+[node name="GravityField" parent="." instance=ExtResource("2_tni5k")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_ymqds")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
